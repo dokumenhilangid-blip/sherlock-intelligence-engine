@@ -166,15 +166,19 @@ app.post("/api/analyze", async (req,res)=>{
     for(const signal of unprocessed as any[]){
 
       const prompt = `
-Analyze this AI related signal:
+Analyze this AI related signal.
 
 Title: ${signal.title}
 Content: ${signal.content}
 
-Return JSON:
+Return ONLY valid JSON.
+Do not include markdown, text, or explanations.
+
+Format exactly like this:
+
 {
- "sentiment":0.5,
- "score":70
+  "sentiment": 0.5,
+  "score": 70
 }
 `;
 
@@ -186,7 +190,19 @@ Return JSON:
   temperature: 0
 });
 
-const result = JSON.parse(completion.choices[0].message.content || "{}");
+let result = { sentiment: 0, score: 0 };
+
+try {
+  const raw = completion.choices[0].message.content || "";
+
+  const jsonMatch = raw.match(/\{[\s\S]*\}/);
+
+  if (jsonMatch) {
+    result = JSON.parse(jsonMatch[0]);
+  }
+} catch (err) {
+  console.log("AI parse error:", completion.choices[0].message.content);
+}
       updateSignal.run(
         result.sentiment || 0,
         result.score || 0,
