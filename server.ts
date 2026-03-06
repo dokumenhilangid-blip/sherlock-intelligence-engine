@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
 import Database from "better-sqlite3";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
@@ -214,17 +213,6 @@ Return JSON:
   }
 
 });
-
-if(process.env.NODE_ENV === "development"){
-
-  const vite = await createViteServer({
-    server:{ middlewareMode:true },
-    appType:"spa"
-  });
-
-  app.use(vite.middlewares);
-
-}
 
 const PORT = process.env.PORT || 3000;
 
