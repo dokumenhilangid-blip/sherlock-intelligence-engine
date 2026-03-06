@@ -3,13 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-  "start": "node --import tsx server.ts"
+    "start": "node --import tsx server.ts"
   },
   "dependencies": {
     "express": "^4.21.2",
     "dotenv": "^17.2.3",
     "@google/genai": "^1.29.0",
-    "better-sqlite3": "^12.4.1"
+    "better-sqlite3": "^12.4.1",
+    "openai": "^4.56.0"
   },
   "devDependencies": {
     "tsx": "^4.21.0",
