@@ -217,10 +217,35 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   }
+// ===== Pipeline Endpoints =====
+let signals:any[] = []
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-}
+app.get("/api/signals",(req,res)=>{
+  res.json(signals)
+})
 
+app.get("/api/scrape",(req,res)=>{
+  const data = [
+    {source:"reddit",title:"AI meeting notes SaaS"},
+    {source:"reddit",title:"AI cold email automation"},
+    {source:"reddit",title:"AI marketing copy generator"}
+  ]
+
+  signals = data
+
+  res.json({
+    status:"scraping complete",
+    count:data.length
+  })
+})
+
+app.get("/api/analyze",(req,res)=>{
+  const opportunities = signals.map(s=>({
+    problem:s.title,
+    opportunity:"Potential AI micro SaaS"
+  }))
+
+  res.json(opportunities)
+})
+  
 startServer();
