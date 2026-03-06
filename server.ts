@@ -178,16 +178,15 @@ Return JSON:
 }
 `;
 
-      const response = await ai.models.generateContent({
-        model:"gemini-2.5-flash",
-        contents:prompt,
-        config:{
-          responseMimeType:"application/json"
-        }
-      });
+      const completion = await ai.chat.completions.create({
+  model: "llama-3.1-8b-instant",
+  messages: [
+    { role: "user", content: prompt }
+  ],
+  temperature: 0
+});
 
-      const result = JSON.parse(response.text || "{}");
-
+const result = JSON.parse(completion.choices[0].message.content || "{}");
       updateSignal.run(
         result.sentiment || 0,
         result.score || 0,
