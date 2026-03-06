@@ -204,9 +204,10 @@ Return JSON:
 
 });
 
-const PORT = parseInt(process.env.PORT || "8080", 10);
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 
 app.listen(PORT, "0.0.0.0", () => {
+  console.log("PORT ENV =", process.env.PORT);
   console.log(`Sherlock Intelligence Engine running on port ${PORT}`);
 });
 
