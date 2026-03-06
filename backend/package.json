@@ -1,0 +1,17 @@
+{
+  "name": "sherlock-intelligence-engine",
+  "type": "module",
+  "scripts": {
+    "start": "node --import tsx server.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "dotenv": "^17.2.3",
+    "@google/genai": "^1.29.0",
+    "better-sqlite3": "^12.4.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.2"
+  }
+}
