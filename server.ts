@@ -49,6 +49,10 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/test",(req,res)=>{
+  res.send("server alive")
+})
+
 app.get("/",(req,res)=>{
   res.send("Sherlock Intelligence Engine running")
 })
