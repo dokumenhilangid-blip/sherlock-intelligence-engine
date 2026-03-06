@@ -1,0 +1,5 @@
+{
+  "name": "Sherlock AI Intelligence Engine",
+  "description": "A full-stack AI SaaS Intelligence Engine that scrapes AI tool directories and Reddit to extract signals, detect trends, and generate opportunities using the Sherlock Analysis Framework.",
+  "requestFramePermissions": []
+}
