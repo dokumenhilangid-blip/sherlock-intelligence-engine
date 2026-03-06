@@ -247,5 +247,5 @@ app.get("/api/analyze",(req,res)=>{
 
   res.json(opportunities)
 })
-  
+
 startServer();
