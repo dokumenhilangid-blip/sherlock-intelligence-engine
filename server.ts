@@ -1,6 +1,6 @@
 import express from "express";
 import Database from "better-sqlite3";
-import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -40,7 +40,10 @@ CREATE TABLE IF NOT EXISTS tools (
 );
 `);
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1"
+});
 
 async function startServer() {
 
