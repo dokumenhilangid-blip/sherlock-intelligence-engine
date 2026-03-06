@@ -204,10 +204,10 @@ Return JSON:
 
 });
 
-const PORT = Number(process.env.PORT) || 8080;
+const PORT = parseInt(process.env.PORT || "8080", 10);
 
-app.listen(PORT,"0.0.0.0",()=>{
-  console.log("Sherlock Intelligence Engine running on port",PORT);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Sherlock Intelligence Engine running on port ${PORT}`);
 });
 
 }   // ← PENUTUP startServer()
