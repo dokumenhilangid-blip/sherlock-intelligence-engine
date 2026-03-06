@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://sherlock-intelligence-engine-production.up.railway.app/api/$1"
+    }
+  ]
+}
