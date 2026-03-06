@@ -59,6 +59,7 @@ app.get("/",(req,res)=>{
 app.get("/health",(req,res)=>{
   res.json({status:"ok"})
 })
+
 app.get("/api/health",(req,res)=>{
   res.json({status:"ok"});
 });
@@ -87,15 +88,13 @@ app.get("/api/tools",(req,res)=>{
   res.json(tools);
 });
 
-app.post("/api/scrape",async(req,res)=>{
+app.post("/api/scrape", async (req,res)=>{
   try{
 
     const redditRes = await fetch(
       "https://www.reddit.com/r/artificial/new.json?limit=10",
       {
-        headers:{
-          "User-Agent":"SherlockAI/1.0"
-        }
+        headers:{ "User-Agent":"SherlockAI/1.0" }
       }
     );
 
@@ -138,15 +137,11 @@ app.post("/api/scrape",async(req,res)=>{
     });
 
   }catch(error:any){
-
-    res.status(500).json({
-      error:error.message
-    });
-
+    res.status(500).json({ error:error.message });
   }
 });
 
-app.post("/api/analyze",async(req,res)=>{
+app.post("/api/analyze", async (req,res)=>{
 
   try{
 
@@ -174,7 +169,6 @@ Title: ${signal.title}
 Content: ${signal.content}
 
 Return JSON:
-
 {
  "sentiment":0.5,
  "score":70
@@ -182,7 +176,7 @@ Return JSON:
 `;
 
       const response = await ai.models.generateContent({
-        model:"gemini-3-flash-preview",
+        model:"gemini-2.5-flash",
         contents:prompt,
         config:{
           responseMimeType:"application/json"
@@ -205,21 +199,17 @@ Return JSON:
     });
 
   }catch(error:any){
-
-    res.status(500).json({
-      error:error.message
-    });
-
+    res.status(500).json({ error:error.message });
   }
 
 });
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("Sherlock Intelligence Engine running on port", PORT);
+app.listen(PORT,"0.0.0.0",()=>{
+  console.log("Sherlock Intelligence Engine running on port",PORT);
 });
 
-export default app;
+}   // ← PENUTUP startServer()
 
 startServer();
