@@ -2,7 +2,7 @@
   "name": "sherlock-intelligence-engine",
   "type": "module",
   "scripts": {
-    "start": "node --import tsx server.ts"
+    "start": "node --import tsx src/server.ts"
   },
   "dependencies": {
     "express": "^4.21.2",
